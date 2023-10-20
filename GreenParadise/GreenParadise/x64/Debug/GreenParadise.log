@@ -1,2 +1,3 @@
 ﻿  GreenParadise.cpp
-  GreenParadise.vcxproj -> C:\Users\Aleksandar\source\repos\GreenParadise\x64\Debug\GreenParadise.exe
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\GreenParadise.cpp(26): warning C4715: 'resolutionSettings': not all control paths return a value
+  GreenParadise.vcxproj -> C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\x64\Debug\GreenParadise.exe
