@@ -37,10 +37,16 @@ void gameRes1280x720()
 	InitWindow(1280, 720, "Green Paradise");
 	SetTargetFPS(60); 	//SetWindowState(FLAG_VSYNC_HINT);
 
-	Texture2D background = LoadTexture("../../sprites/bg1280-720.png");
+	Texture2D background = LoadTexture("../../sprites/background/bg1280-720.png");
 	Texture2D earth = LoadTexture("../../sprites/worldRotation.png");
 	Texture2D fallingStarEventL = LoadTexture("../../sprites/fallingStarL.png");
 	Texture2D fallingStarEventR = LoadTexture("../../sprites/fallingStarR.png");
+	Texture2D bottomBarN = LoadTexture("../../sprites/bottomBarN.png");
+	Texture2D bottomBarG = LoadTexture("../../sprites/bottomBarG.png");	// x >= 65%
+	Texture2D bottomBarR = LoadTexture("../../sprites/bottomBarR.png");	// x <= 45%
+	Texture2D marketTab = LoadTexture("../../sprites/tabIcons/ecoMarketTab.png");
+	Texture2D statisticsTab = LoadTexture("../../sprites/tabIcons/statisticsTab.png");
+	Texture2D miniGamesTab = LoadTexture("../../sprites/tabIcons/ecoGamesTab.png");
 
 	float wordlFrameWidth = (float)(earth.width / 23);
 	int maxFramesE = (int)(earth.width / (int)wordlFrameWidth);
@@ -58,6 +64,8 @@ void gameRes1280x720()
 	float starFallingXdec = 0, starFallingYdec = 1, baseXFS = 550, baseYFS = -270;
 	bool checkIfOffScreen = false;
 	int fixFS = 0, countFixFS = 0;
+
+	//int greenPercent = 50, redPercent = 50;	zapochni tuk !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	// random direction of falling star
 	std::random_device rd2;
@@ -78,7 +86,6 @@ void gameRes1280x720()
 		frameE = frameE % maxFramesE;
 
 		DrawTexture(background, 0, 0, WHITE);
-
 		
 		if (!checkIfOffScreen)
 		{
@@ -87,7 +94,7 @@ void gameRes1280x720()
 			{
 				fixFS = range2(rd2);
 			}
-			while (countDrawTime < 10)
+			while (countDrawTime < 10)	// determines the speed of the animation
 			{
 				countDrawTime++;
 
@@ -140,6 +147,13 @@ void gameRes1280x720()
 		}
 
 		DrawTextureRec(earth, Rectangle{ (wordlFrameWidth * frameE), 0, wordlFrameWidth, (float)earth.height }, Vector2{ (float)((GetScreenWidth() / 4) - 90), (float)50 }, RAYWHITE);
+		
+		DrawTexture(bottomBarN, 0, 0, WHITE);
+		DrawTexture(marketTab, GetScreenWidth() / 2 - ((marketTab.width) / 2) - 100, GetScreenHeight() - (marketTab.height + 10), WHITE);
+		DrawTexture(statisticsTab, GetScreenWidth() / 2 - ((statisticsTab.width) / 2), GetScreenHeight() - (statisticsTab.height + 10), WHITE);
+		DrawTexture(miniGamesTab, GetScreenWidth() / 2 - ((miniGamesTab.width) / 2) + 100, GetScreenHeight() - (miniGamesTab.height + 10), WHITE);
+
+		//switch ();	tuka shte se gledat procentite !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 		DrawFPS(10, 10); //temporary
 		EndDrawing();
@@ -149,6 +163,12 @@ void gameRes1280x720()
 	UnloadTexture(earth);
 	UnloadTexture(fallingStarEventL);
 	UnloadTexture(fallingStarEventR);
+	UnloadTexture(bottomBarN);
+	UnloadTexture(bottomBarG);
+	UnloadTexture(bottomBarR);
+	UnloadTexture(marketTab);
+	UnloadTexture(statisticsTab);
+	UnloadTexture(miniGamesTab);
 	CloseWindow();
 }
 
