@@ -1,0 +1,11 @@
+I. Properties of solution:
+``1. C/C++: 
+	Genereal:
+	- "Additional Include Directories" - <path of library>\include
+
+``2. Link
+	General:
+	- "Additional Library Directories" - <path of library>\lib
+	
+	Input:
+	- "Additional Dependencies" - raylib.lib;winmm.lib;$..
