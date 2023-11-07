@@ -52,7 +52,7 @@ void gameMenu1280x720()
 	Texture2D mouse = LoadTexture("../../sprites/mouseSprites/mouseSprite1.png");
 	Texture2D startButton = LoadTexture("../../sprites/buttons/startButton.png");
 	Texture2D exitButton = LoadTexture("../../sprites/buttons/exitButton.png");
-	Texture2D gameName = LoadTexture("../../sprites/buttons/gameNameS.png");
+	Texture2D gameName = LoadTexture("../../sprites/buttons/gameName.png");
 	Texture2D backgroundMenu = LoadTexture("../../sprites/background/bg1280-720.png");
 	Texture2D earth = LoadTexture("../../sprites/worldRotation.png");
 	Texture2D border = LoadTexture("../../sprites/borders/menuBorder.png");
