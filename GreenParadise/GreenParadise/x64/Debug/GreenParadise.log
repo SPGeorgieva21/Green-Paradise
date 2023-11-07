@@ -1,9 +1,19 @@
 ﻿  functions.cpp
-C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(111,18): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(114,28): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(115,28): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(120,28): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(121,28): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(137,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(80,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(81,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(115,27): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(118,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(119,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(124,28): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(125,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(141,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(217,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(218,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(252,27): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(255,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(256,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(261,28): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(262,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(278,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(31): warning C4715: 'resolutionSettings': not all control paths return a value
   GreenParadise.vcxproj -> C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\x64\Debug\GreenParadise.exe
