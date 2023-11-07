@@ -30,6 +30,18 @@ int resolutionSettings()
 	}
 }
 
+int checkIfInBounds(int x, int y, Texture2D startButton, Texture2D exitButton)
+{
+	if ((x >= (GetScreenWidth() / 2) - 150 && x <= (GetScreenWidth() / 2) - 150 + startButton.width) && (y >= 200 + startButton.height && y <= (200 + startButton.height) + startButton.height))
+	{
+		return 1;
+	}
+	else if ((x >= (GetScreenWidth() / 2) - 120 && x <= ((GetScreenWidth() / 2) - 120) + exitButton.width) && (y >= 310 + exitButton.height && y <= (310 + exitButton.height) + exitButton.height))
+	{
+		return 2;
+	}
+}
+
 void gameMenu1280x720()
 {
 	system("color f0");
@@ -38,6 +50,9 @@ void gameMenu1280x720()
 	SetTargetFPS(60); 	//SetWindowState(FLAG_VSYNC_HINT);
 
 	Texture2D mouse = LoadTexture("../../sprites/mouseSprites/mouseSprite1.png");
+	Texture2D startButton = LoadTexture("../../sprites/buttons/startButton.png");
+	Texture2D exitButton = LoadTexture("../../sprites/buttons/exitButton.png");
+	Texture2D gameName = LoadTexture("../../sprites/buttons/gameNameS.png");
 	Texture2D backgroundMenu = LoadTexture("../../sprites/background/bg1280-720.png");
 	Texture2D earth = LoadTexture("../../sprites/worldRotation.png");
 	Texture2D border = LoadTexture("../../sprites/borders/menuBorder.png");
@@ -68,6 +83,9 @@ void gameMenu1280x720()
 	std::uniform_int_distribution <int> range2(0, 1);
 
 	float xMouseTrack = 32.0f, yMouseTrack = 32.0f;
+	int xMouseClick = 0.0f, yMouseClick = 0.0f;
+
+	std::string startGame = "";
 
 	HideCursor();
 
@@ -151,19 +169,52 @@ void gameMenu1280x720()
 		}
 
 		DrawTextureRec(earth, Rectangle{ (wordlFrameWidth * frameEearth), 0, wordlFrameWidth, (float)earth.height }, Vector2{ (float)((GetScreenWidth() / 4) - 90), (float)350 }, RAYWHITE);
+		DrawTexture(startButton,(GetScreenWidth() / 2) - 150, 200 + startButton.height, WHITE);
+		DrawTexture(exitButton, (GetScreenWidth() / 2) - 120, 310 + exitButton.height, WHITE);
+		DrawTexture(gameName, (GetScreenWidth() / 2) - 290, gameName.height - 28, WHITE);
 		DrawTexture(border, 0, 0, WHITE);
 		DrawTexturePro(mouse, Rectangle{ 0, 0, 392, 392 }, Rectangle{ xMouseTrack, yMouseTrack, 25, 25 }, Vector2{ 0, 0 }, 0, RAYWHITE);
+
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+		{
+			switch (checkIfInBounds(xMouseClick = GetMouseX(), yMouseClick = GetMouseY(), startButton, exitButton))
+			{
+				case 1:	startGame = "start"; break;
+				case 2: startGame = "close"; break;
+			}
+		}
+
+		if (startGame == "start")
+		{
+			break;
+		}
+		else if (startGame == "close")
+		{
+			break;
+		}
 
 		DrawFPS(10, 10); //temporary
 		EndDrawing();
 	}
 
 	UnloadTexture(mouse);
+	UnloadTexture(startButton);
+	UnloadTexture(exitButton);
+	UnloadTexture(gameName);
 	UnloadTexture(backgroundMenu);
 	UnloadTexture(earth);
 	UnloadTexture(border);
 	UnloadTexture(fallingStarEventL);
 	UnloadTexture(fallingStarEventR);
+
+	if (startGame == "start")
+	{
+		gameRes1280x720();
+	}
+	else
+	{
+		CloseWindow();
+	}
 }
 
 void gameRes1280x720()
