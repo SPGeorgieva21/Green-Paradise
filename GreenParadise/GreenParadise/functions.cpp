@@ -30,7 +30,7 @@ int resolutionSettings()
 	}
 }
 
-int checkIfInBounds(int x, int y, Texture2D startButton, Texture2D exitButton)
+int startupStatus(int x, int y, Texture2D startButton, Texture2D exitButton)
 {
 	if ((x >= (GetScreenWidth() / 2) - 150 && x <= (GetScreenWidth() / 2) - 150 + startButton.width) && (y >= 200 + startButton.height && y <= (200 + startButton.height) + startButton.height))
 	{
@@ -83,7 +83,6 @@ void gameMenu1280x720()
 	std::uniform_int_distribution <int> range2(0, 1);
 
 	float xMouseTrack = 32.0f, yMouseTrack = 32.0f;
-	int xMouseClick = 0.0f, yMouseClick = 0.0f;
 
 	std::string startGame = "";
 
@@ -177,7 +176,7 @@ void gameMenu1280x720()
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
-			switch (checkIfInBounds(xMouseClick = GetMouseX(), yMouseClick = GetMouseY(), startButton, exitButton))
+			switch (startupStatus(GetMouseX(), GetMouseY(), startButton, exitButton))
 			{
 				case 1:	startGame = "start"; break;
 				case 2: startGame = "close"; break;
@@ -374,73 +373,6 @@ void gameRes1980x1080()
 	std::cout << '\n' << std::setw(43 + sizeOfErr) << NSUD << '\n';
 }
 
-
-
-
-
-/*
-
-void checkIfInBounds(int x, int y, Texture2D images[], int* imageX, int* imageY)
+void checkIfInBounds()
 {
-	for (int i = 0; i < 6; i++)
-	{
-		if ((x >= imageX[i] && x <= imageX[i] + images[i].width) && (y >= imageY[i] && y <= imageY[i] + images[i].width))
-		{
-			random_device rd;
-			uniform_int_distribution <int> range(20, 750);
-			imageX[i] = range(rd);
-		}
-	}
 }
-
-int main()
-{
-
-	InitWindow(1280, 720, "Mini-Game--Beach_Cleaner");
-	SetTargetFPS(60);
-
-	Texture2D beachImage = LoadTexture("./images1/beach.png");
-	Texture2D picture1 = LoadTexture("./images1/picture1.png");
-	Texture2D picture2 = LoadTexture("./images1/picture2.png");
-	Texture2D picture3 = LoadTexture("./images1/picture3.png");
-	Texture2D picture4 = LoadTexture("./images1/picture4.png");
-	Texture2D picture5 = LoadTexture("./images1/picture5.png");
-	Texture2D picture6 = LoadTexture("./images1/picture6.png");
-
-	int xClick = 0.0f, yClick = 0.0f;
-	int imageX[] = { 740, 290, 960, 100, 540, 400 };
-	int imageY[] = { 450, 480, 500, 580, 600, 630 };
-	Texture2D textures[6] = { picture1, picture2, picture3, picture4, picture5, picture6 };
-
-	while (!WindowShouldClose())
-	{
-		BeginDrawing();
-		ClearBackground(BLACK);
-
-		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-		{
-			checkIfInBounds(xClick = GetMouseX(), yClick = GetMouseY(), textures, imageX, imageY);
-		}
-
-		DrawTexture(beachImage, 0, 0, WHITE);
-		DrawTexture(picture1, imageX[0], imageY[0], WHITE);
-		DrawTexture(picture2, imageX[1], imageY[1], WHITE);
-		DrawTexture(picture3, imageX[2], imageY[2], WHITE);
-		DrawTexture(picture4, imageX[3], imageY[3], WHITE);
-		DrawTexture(picture5, imageX[4], imageY[4], WHITE);
-		DrawTexture(picture6, imageX[5], imageY[5], WHITE);
-
-		EndDrawing();
-	}
-
-	UnloadTexture(beachImage);
-	UnloadTexture(picture1);
-	UnloadTexture(picture2);
-	UnloadTexture(picture3);
-	UnloadTexture(picture4);
-	UnloadTexture(picture5);
-	UnloadTexture(picture6);
-	CloseWindow();
-}
-
-*/

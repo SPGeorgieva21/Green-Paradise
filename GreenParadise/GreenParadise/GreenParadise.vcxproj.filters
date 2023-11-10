@@ -21,6 +21,9 @@
     <ClCompile Include="functions.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="miniGames.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h">

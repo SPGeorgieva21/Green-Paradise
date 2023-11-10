@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="GreenParadise.cpp" />
+    <ClCompile Include="miniGames.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h" />

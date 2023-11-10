@@ -1,7 +1,11 @@
 
 int resolutionSettings();
 
-int checkIfInBounds();
+void checkIfInBounds();
+
+void beachCleaner();
+
+int startupStatus();
 
 void gameMenu1280x720();
 
