@@ -218,6 +218,12 @@ void gameMenu1280x720()
 
 void gameRes1280x720()
 {
+
+	std::vector<Texture2D> earthImgs;
+
+	for (size_t i = 1; i <= 23; i++)
+		earthImgs.push_back(LoadTexture(TextFormat("../../sprites/worldRotationPNGs-23/%drot.png", i)));
+
 	// Declaring and initializing textures
 	Texture2D mouse = LoadTexture("../../sprites/mouseSprites/mouseSprite1.png");
 	Texture2D background = LoadTexture("../../sprites/background/bg1280-720.png");
@@ -337,7 +343,7 @@ void gameRes1280x720()
 			checkIfOffScreen = true;
 		}
 
-		DrawTextureRec(earth, Rectangle{ (wordlFrameWidth * frameEearth), 0, wordlFrameWidth, (float)earth.height }, Vector2{ (float)((GetScreenWidth() / 4) - 90), (float)50 }, RAYWHITE);
+		DrawTexture(earthImgs[frameEearth], (float)((GetScreenWidth() / 4) - 90), (float)50, WHITE);
 		
 		DrawTexture(bottomBarN, 0, 0, WHITE);
 		DrawTexture(marketTab, GetScreenWidth() / 2 - ((marketTab.width) / 2) - 100, GetScreenHeight() - (marketTab.height + 10), WHITE);
@@ -349,6 +355,9 @@ void gameRes1280x720()
 		DrawFPS(10, 10); //temporary
 		EndDrawing();
 	}
+
+	for (auto it = earthImgs.begin(); it != earthImgs.end(); ++it)
+		UnloadTexture(*it);
 
 	UnloadTexture(mouse);
 	UnloadTexture(background);
