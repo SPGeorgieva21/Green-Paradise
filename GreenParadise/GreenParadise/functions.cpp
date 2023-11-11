@@ -6,6 +6,8 @@
 #include <raylib.h>
 #include "functions.h"
 
+int temporary = 0;
+
 int resolutionSettings()
 {
 	system("color 0a");
