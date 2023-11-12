@@ -609,6 +609,8 @@ int checkIfInBoundsTabs(int x, int y, Texture2D images[], int* imageX, int* imag
 			}
 		}
 	}
+
+	return 0;
 }
 
 // Starts the game with resolution of 1280x720
