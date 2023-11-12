@@ -1,3 +1,26 @@
-﻿  LINK : C:\Users\alexz\Documents\GitHub\Green-Paradise\GreenParadise\x64\Debug\GreenParadise.exe not found or not built by the last incremental link; performing full link
+﻿  functions.cpp
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(99,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(100,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(134,27): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(137,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(138,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(143,28): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(144,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(160,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(275,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(276,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(310,27): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(313,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(314,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(319,28): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(320,28): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(336,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(348,84): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(348,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  GreenParadise.cpp
+  miniGames.cpp
+  Generating Code...
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(33): warning C4715: 'resolutionSettings': not all control paths return a value
+C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\GreenParadise\functions.cpp(45): warning C4715: 'startupStatus': not all control paths return a value
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  GreenParadise.vcxproj -> C:\Users\alexz\Documents\GitHub\Green-Paradise\GreenParadise\x64\Debug\GreenParadise.exe
+  GreenParadise.vcxproj -> C:\Users\Aleksandar\Desktop\Green-Paradise\GreenParadise\x64\Debug\GreenParadise.exe
