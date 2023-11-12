@@ -8,6 +8,7 @@
 
 int temporary = 0;
 
+// Checks the resolution selected by the User
 int resolutionSettings()
 {
 	system("color 0a");
@@ -32,6 +33,7 @@ int resolutionSettings()
 	}
 }
 
+// Checks the status of the game selected by the User
 int startupStatus(int x, int y, Texture2D startButton, Texture2D exitButton)
 {
 	if ((x >= (GetScreenWidth() / 2) - 150 && x <= (GetScreenWidth() / 2) - 150 + startButton.width) && (y >= 200 + startButton.height && y <= (200 + startButton.height) + startButton.height))
@@ -44,12 +46,19 @@ int startupStatus(int x, int y, Texture2D startButton, Texture2D exitButton)
 	}
 }
 
+// Starts the game with resolution of 1280x720
 void gameMenu1280x720()
 {
 	system("color f0");
 
 	InitWindow(1280, 720, "Green Paradise");
-	SetTargetFPS(60); 	//SetWindowState(FLAG_VSYNC_HINT);
+	SetTargetFPS(60); 	// Alternative method (VSYNC) - SetWindowState(FLAG_VSYNC_HINT);
+
+	std::vector<Texture2D> earthImgs;
+
+	// Declaring and initializing textures
+	for (size_t i = 1; i <= 23; i++)
+		earthImgs.push_back(LoadTexture(TextFormat("../../sprites/worldRotationPNGs-23/%drot.png", i)));
 
 	Texture2D mouse = LoadTexture("../../sprites/mouseSprites/mouseSprite1.png");
 	Texture2D startButton = LoadTexture("../../sprites/buttons/startButton.png");
@@ -61,11 +70,12 @@ void gameMenu1280x720()
 	Texture2D fallingStarEventL = LoadTexture("../../sprites/fallingStarL.png");
 	Texture2D fallingStarEventR = LoadTexture("../../sprites/fallingStarR.png");
 
+	// Set timers
 	float wordlFrameWidth = (float)(earth.width / 23);
-	int maxFramesE = (int)(earth.width / (int)wordlFrameWidth);
+	int maxFramesEearth = (int)(earth.width / (int)wordlFrameWidth);
 
 	float fallingStarFrameWidth = (float)(fallingStarEventL.width / 30);
-	int maxFramesFS = (int)(fallingStarEventL.width / (int)fallingStarFrameWidth);
+	int maxFramesFallingStar = (int)(fallingStarEventL.width / (int)fallingStarFrameWidth);
 
 	float timerEarth = 0.0f;
 	int frameEearth = 0;
@@ -74,22 +84,21 @@ void gameMenu1280x720()
 	int frameFallingStar = 0;
 	int countDrawTime = 0;
 
+	// Position shifters
 	float starFallingXdec = 0, starFallingYdec = 1, baseXFS = 550, baseYFS = -270;
 	bool checkIfOffScreen = false;
-	int fixFallingStar = 0, countFixFS = 0;
+	int fixFallingStar = 0, countFixFallingStar = 0;
+	float xMouseTrack = 0.0f, yMouseTrack = 0.0f;
 
-	std::string tryS = "WHITE";
-
-	// random direction of falling star
+	// Random direction of falling star
 	std::random_device rd2;
 	std::uniform_int_distribution <int> range2(0, 1);
-
-	float xMouseTrack = 32.0f, yMouseTrack = 32.0f;
 
 	std::string startGame = "";
 
 	HideCursor();
 
+	// Starting game
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
@@ -106,14 +115,15 @@ void gameMenu1280x720()
 			frameEearth += 1;
 		}
 
-		frameEearth = frameEearth % maxFramesE;
+		frameEearth = frameEearth % maxFramesEearth;
 
+		// Draw textures
 		DrawTexture(backgroundMenu, 0, 0, WHITE);
 
 		if (!checkIfOffScreen)
 		{
-			countFixFS++;
-			if (countFixFS == 1)
+			countFixFallingStar++;
+			if (countFixFallingStar == 1)
 			{
 				fixFallingStar = range2(rd2);
 			}
@@ -129,7 +139,7 @@ void gameMenu1280x720()
 					frameFallingStar += 1;
 				}
 
-				frameFallingStar = frameFallingStar % maxFramesFS;
+				frameFallingStar = frameFallingStar % maxFramesFallingStar;
 
 				if (fixFallingStar == true)
 				{
@@ -169,7 +179,8 @@ void gameMenu1280x720()
 			checkIfOffScreen = true;
 		}
 
-		DrawTextureRec(earth, Rectangle{ (wordlFrameWidth * frameEearth), 0, wordlFrameWidth, (float)earth.height }, Vector2{ (float)((GetScreenWidth() / 4) - 90), (float)350 }, RAYWHITE);
+		DrawTexture(earthImgs[frameEearth], (float)((GetScreenWidth() / 4) - 90), (float)350, WHITE);
+
 		DrawTexture(startButton,(GetScreenWidth() / 2) - 150, 200 + startButton.height, WHITE);
 		DrawTexture(exitButton, (GetScreenWidth() / 2) - 120, 310 + exitButton.height, WHITE);
 		DrawTexture(gameName, (GetScreenWidth() / 2) - 290, gameName.height - 28, WHITE);
@@ -198,6 +209,10 @@ void gameMenu1280x720()
 		EndDrawing();
 	}
 
+	//Unload textures
+	for (auto it = earthImgs.begin(); it != earthImgs.end(); ++it)
+		UnloadTexture(*it);
+
 	UnloadTexture(mouse);
 	UnloadTexture(startButton);
 	UnloadTexture(exitButton);
@@ -220,13 +235,12 @@ void gameMenu1280x720()
 
 void gameRes1280x720()
 {
-
+	// Declaring and initializing textures
 	std::vector<Texture2D> earthImgs;
 
 	for (size_t i = 1; i <= 23; i++)
 		earthImgs.push_back(LoadTexture(TextFormat("../../sprites/worldRotationPNGs-23/%drot.png", i)));
-
-	// Declaring and initializing textures
+	
 	Texture2D mouse = LoadTexture("../../sprites/mouseSprites/mouseSprite1.png");
 	Texture2D background = LoadTexture("../../sprites/background/bg1280-720.png");
 	Texture2D earth = LoadTexture("../../sprites/worldRotation.png");
@@ -239,6 +253,7 @@ void gameRes1280x720()
 	Texture2D statisticsTab = LoadTexture("../../sprites/tabIcons/statisticsTab.png");
 	Texture2D miniGamesTab = LoadTexture("../../sprites/tabIcons/ecoGamesTab.png");
 
+	// Set timers
 	float wordlFrameWidth = (float)(earth.width / 23);
 	int maxFramesE = (int)(earth.width / (int)wordlFrameWidth);
 
@@ -252,17 +267,15 @@ void gameRes1280x720()
 	int frameFallingStar = 0;
 	int countDrawTime = 0;
 
+	// Position shifters
 	float starFallingXdec = 0, starFallingYdec = 1, baseXFS = 550, baseYFS = -270;
 	bool checkIfOffScreen = false;
 	int fixFallingStar = 0, countFixFS = 0;
-
-	std::string tryS = "WHITE";
+	float xMouseTrack = 0.0f, yMouseTrack = 0.0f;
 
 	// random direction of falling star
 	std::random_device rd2;
 	std::uniform_int_distribution <int> range2(0, 1);
-
-	float xMouseTrack = 32.0f, yMouseTrack = 32.0f;
 
 	HideCursor();
 
@@ -284,6 +297,8 @@ void gameRes1280x720()
 
 		frameEearth = frameEearth % maxFramesE;
 		
+
+		// Drawing textures
 		DrawTexture(background, 0, 0, WHITE);
 		
 		if (!checkIfOffScreen)
@@ -358,6 +373,7 @@ void gameRes1280x720()
 		EndDrawing();
 	}
 
+	// Unload textures
 	for (auto it = earthImgs.begin(); it != earthImgs.end(); ++it)
 		UnloadTexture(*it);
 
@@ -375,6 +391,7 @@ void gameRes1280x720()
 	CloseWindow();
 }
 
+// Starts the game with resolution of 1980x1080 (WIP)
 void gameRes1980x1080()
 {
 	system("color f0");
