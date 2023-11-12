@@ -5,6 +5,14 @@ bool IsMouseOverButton();
 
 void checkIfInBounds();
 
+void marketTabPopUp();
+
+void questionsPopUp();
+
+void miniGamesPopUp();
+
+int checkIfInBoundsTabs();
+
 void InitializeGrid();
 
 void CheckForWin();

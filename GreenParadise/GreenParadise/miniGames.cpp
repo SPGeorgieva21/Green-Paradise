@@ -63,7 +63,13 @@ void beachCleaner()
 	UnloadTexture(sodaCan);
 	UnloadTexture(garbage);
 	UnloadTexture(flipFlop);
-	CloseWindow();
+
+    for (int i = 0; i < 6; i++)
+    {
+        UnloadTexture(textures[i]);
+    }
+
+	//CloseWindow();
 }
 
 // Mini game Chance Taker resources
@@ -221,5 +227,5 @@ void chanceTaker()
         UnloadTexture(fruitTextures[i]);
     }
 
-    CloseWindow();
+    //CloseWindow();
 }
