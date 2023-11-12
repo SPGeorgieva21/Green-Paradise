@@ -1,7 +1,7 @@
 # Green-Paradise
 <p align="center">
   <a href=" rel="noopener">
-  <img src="Images/Logo.png" alt="Logo" width=25% height=25%>
+  <img src="Images/gameLogo.png" alt="Logo" width=25% height=25%>
   </a>
 </p>
 
