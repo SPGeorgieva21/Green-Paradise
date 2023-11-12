@@ -1,9 +1,17 @@
 
 int resolutionSettings();
 
+bool IsMouseOverButton();
+
 void checkIfInBounds();
 
+void InitializeGrid();
+
+void CheckForWin();
+
 void beachCleaner();
+
+void chanceTaker();
 
 int startupStatus();
 
