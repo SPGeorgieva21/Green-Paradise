@@ -6,6 +6,8 @@
 #include <raylib.h>
 #include "functions.h"
 
+int countMoneyNEW = 0;
+
 // Check if X and Y of mouse are inside X and Y of texture/images[N]
 void checkIfInBounds(int x, int y, Texture2D images[], int* imageX, int* imageY)
 {
@@ -16,6 +18,10 @@ void checkIfInBounds(int x, int y, Texture2D images[], int* imageX, int* imageY)
 			std::random_device rd;
 			std::uniform_int_distribution <int> range(20, 750);
 			imageX[i] = range(rd);
+            if (!countMoneyNEW == 9)
+            {
+                countMoneyNEW++;
+            }
 		}
 	}
 }
@@ -23,6 +29,7 @@ void checkIfInBounds(int x, int y, Texture2D images[], int* imageX, int* imageY)
 // Mini game Beach Cleaner
 void beachCleaner()
 {
+    Texture2D mouse = LoadTexture("../../sprites/mouseSprites/mouseSprite1.png");
 	Texture2D beachBackground = LoadTexture("../../sprites/miniGames/beachCleaner/background.png");
 	Texture2D plasticBag = LoadTexture("../../sprites/miniGames/beachCleaner/plasticBag.png");
 	Texture2D plasticBottle = LoadTexture("../../sprites/miniGames/beachCleaner/plasticBottle.png");
@@ -35,8 +42,13 @@ void beachCleaner()
 	int imageY[] = { 450, 480, 500, 580, 600, 630 };
 	Texture2D textures[6] = { plasticBag, plasticBottle, metalCan, sodaCan, garbage, flipFlop };
 
+    float xMouseTrack = 0.0f, yMouseTrack = 0.0f;
 	while (!WindowShouldClose())
 	{
+        int getXMouseTrack = GetMouseX(), getYMouseTrack = GetMouseY();
+        xMouseTrack = getXMouseTrack;
+        yMouseTrack = getYMouseTrack;
+
 		BeginDrawing();
 		ClearBackground(BLACK);
 
@@ -52,10 +64,12 @@ void beachCleaner()
 		DrawTexture(sodaCan, imageX[3], imageY[3], WHITE);
 		DrawTexture(garbage, imageX[4], imageY[4], WHITE);
 		DrawTexture(flipFlop, imageX[5], imageY[5], WHITE);
+        DrawTexturePro(mouse, Rectangle{ 0, 0, 392, 392 }, Rectangle{ xMouseTrack, yMouseTrack, 25, 25 }, Vector2{ 0, 0 }, 0, RAYWHITE);
 
 		EndDrawing();
 	}
 
+    UnloadTexture(mouse);
 	UnloadTexture(beachBackground);
 	UnloadTexture(plasticBag);
 	UnloadTexture(plasticBottle);
@@ -68,8 +82,6 @@ void beachCleaner()
     {
         UnloadTexture(textures[i]);
     }
-
-	//CloseWindow();
 }
 
 // Mini game Chance Taker resources
@@ -83,8 +95,8 @@ const char* fruitImages[] =
 {
     "..\\..\\sprites\\miniGames\\chanceTaker\\watermelon.png",
     "..\\..\\sprites\\miniGames\\chanceTaker\\pers.png",
-    "..\\..\\sprites\\miniGames\\chanceTaker\\banan.png",
-    "..\\..\\sprites\\miniGames\\chanceTaker\\\straw.png"
+    "..\\..\\sprites\\miniGames\\chanceTaker\\banana.png",
+    "..\\..\\sprites\\miniGames\\chanceTaker\\\strawberry.png"
 };
 
 // Game description
@@ -170,23 +182,26 @@ bool IsMouseOverButton(int buttonX, int buttonY, int buttonWidth, int buttonHeig
 }
 
 // Mini game Chance Taker
-void chanceTaker() 
+void chanceTaker()
 {
     const int screenWidth = 1280;
     const int screenHeight = 720;
 
-    InitWindow(screenWidth, screenHeight, "Moment Game");
-    SetTargetFPS(60);
-
     InitializeGrid();
 
     Texture2D fruitTextures[4];
+    Texture2D mouse = LoadTexture("../../sprites/mouseSprites/mouseSprite1.png");
 
     for (int i = 0; i < 4; ++i) {
         fruitTextures[i] = LoadTexture(fruitImages[i]);
     }
 
+    float xMouseTrack = 0.0f, yMouseTrack = 0.0f;
     while (!WindowShouldClose()) {
+        int getXMouseTrack = GetMouseX(), getYMouseTrack = GetMouseY();
+        xMouseTrack = getXMouseTrack;
+        yMouseTrack = getYMouseTrack;
+
         if (!spinning && IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && IsMouseOverButton(screenWidth - 100, 0, 100, screenHeight)) {
             InitializeGrid();
         }
@@ -214,6 +229,7 @@ void chanceTaker()
         DrawText("SPIN", screenWidth - 80, 50, 20, RAYWHITE);
 
         DrawText(("Total Winnings: " + std::to_string(totalWinnings) + " levs").c_str(), 10, GetScreenHeight() - 65, 30, RAYWHITE);
+        DrawTexturePro(mouse, Rectangle{ 0, 0, 392, 392 }, Rectangle{ xMouseTrack, yMouseTrack, 25, 25 }, Vector2{ 0, 0 }, 0, RAYWHITE);
 
         EndDrawing();
 
@@ -226,6 +242,5 @@ void chanceTaker()
     for (int i = 0; i < 4; ++i) {
         UnloadTexture(fruitTextures[i]);
     }
-
-    //CloseWindow();
+    UnloadTexture(mouse);
 }

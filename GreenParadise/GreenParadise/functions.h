@@ -11,6 +11,10 @@ void questionsPopUp();
 
 void miniGamesPopUp();
 
+void checkGamePick();
+
+void checkIfDonate();
+
 int checkIfInBoundsTabs();
 
 void InitializeGrid();

@@ -6,7 +6,17 @@
 #include <raylib.h>
 #include "functions.h"
 
-int money = 0;
+int countMoney = 4;	// default value - 4
+
+const char* money[10] = {
+	"0 lv", "300 lv", "600 lv", "900 lv", "1 200 lv",
+	"1 500 lv", "1 800 lv", "2 100 lv", "2 400 lv", "2 700 lv"
+};
+
+const char* percantages[10] = {
+	"0%", "25%", "30%", "35%", "50%",
+	"65%", "70%", "75%", "80%", "100%"
+};
 
 // Checks the resolution selected by the User
 int resolutionSettings()
@@ -29,6 +39,32 @@ int resolutionSettings()
 		{
 			system("cls");
 			return 2;
+		}
+	}
+}
+
+void checkGamePick(int x, int y, Texture2D startB)
+{
+	if ((x >= (GetScreenWidth() / 2) - 250 && x <= (GetScreenWidth() / 2) - 250 + startB.width) && (y >= 380 && y <= 380 + startB.height))
+	{
+		beachCleaner();
+	}
+	else if ((x >= (GetScreenWidth() / 2) + 60 && x <= (GetScreenWidth() / 2) + 60 + startB.width) && (y >= 380 && y <= 380 + startB.height))
+	{
+		chanceTaker();
+	}
+}
+
+void checkIfDonate(int x, int y, Texture2D images[], int* imageX, int* imageY)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if ((x >= imageX[i] && x <= imageX[i] + images[i].width) && (y >= imageY[i] && y <= imageY[i] + images[i].width))
+		{
+			if (money[countMoney] == "300 lv" || money[countMoney] == "600 lv" || money[countMoney] == "900 lv" || money[countMoney] == "1 200 lv" || money[countMoney] == "1 500 lv" || money[countMoney] == "1 800 lv" || money[countMoney] == "2 100 lv" || money[countMoney] == "2 400 lv" || money[countMoney] == "2 700 lv")
+			{
+				countMoney--;
+			}
 		}
 	}
 }
@@ -76,9 +112,18 @@ void marketTabPopUp(short int* status)
 	Texture2D bottomBarR = LoadTexture("../../sprites/borders/bottomBarR.png");	// x <= 45%
 	Texture2D tabBackground = LoadTexture("../../sprites/background/popUpWindow.png");
 	Texture2D xButton = LoadTexture("../../sprites/buttons/xButton.png");
+	Texture2D donateButton = LoadTexture("../../sprites/buttons/donateButton.png");
 	Texture2D marketTab = LoadTexture("../../sprites/tabIcons/ecoMarketTab.png");
 	Texture2D questionsTab = LoadTexture("../../sprites/tabIcons/questionsTab.png");
 	Texture2D miniGamesTab = LoadTexture("../../sprites/tabIcons/ecoGamesTab.png");
+	Texture2D forestFireFund = LoadTexture("../../sprites/fundIcons/fireFoundation.png");
+	Texture2D forestFund = LoadTexture("../../sprites/fundIcons/forestFoundation.png");
+	Texture2D waterFund = LoadTexture("../../sprites/fundIcons/seaFoundation.png");
+	Texture2D cleaningFund = LoadTexture("../../sprites/fundIcons/landFoundation.png");
+
+	int imageX2[] = { (GetScreenWidth() / 2) - 205, (GetScreenWidth() / 2) - 205, (GetScreenWidth() / 2) + 105, (GetScreenWidth() / 2) + 105 };
+	int imageY2[] = { 300, 500, 300, 500 };
+	Texture2D textures[4] = { forestFireFund, forestFund, waterFund, cleaningFund };
 
 	// Set timers
 	float wordlFrameWidth = (float)(earth.width / 23);
@@ -126,7 +171,6 @@ void marketTabPopUp(short int* status)
 		}
 
 		frameEearth = frameEearth % maxFramesE;
-
 
 		// Drawing textures
 		DrawTexture(background, 0, 0, WHITE);
@@ -199,6 +243,20 @@ void marketTabPopUp(short int* status)
 
 		DrawTexture(tabBackground, 312, marketTab.height + 60, WHITE);
 		DrawTexture(xButton, tabBackground.width + 266, xButton.height + 45, WHITE);
+		
+		DrawTexture(donateButton, (GetScreenWidth() / 2) - 205, 300, WHITE);
+		DrawTexture(donateButton, (GetScreenWidth() / 2) - 205, 500, WHITE);
+		DrawTexture(donateButton, (GetScreenWidth() / 2) + 105, 300, WHITE);
+		DrawTexture(donateButton, (GetScreenWidth() / 2) + 105, 500, WHITE);
+		
+		DrawTexture(forestFireFund, (GetScreenWidth() / 2) - 300, 190, WHITE);
+		DrawTexture(forestFund, (GetScreenWidth() / 2) - 220, 374, WHITE);
+		DrawTexture(waterFund, (GetScreenWidth() / 2) + 45, 370, WHITE);
+		DrawTexture(cleaningFund, (GetScreenWidth() / 2) + 50, 165, WHITE);
+
+		DrawText(money[countMoney], 145, 40, 30, WHITE);
+		DrawText("Money: ", 35, 40, 30, WHITE);
+		DrawText("Help those fundations by donations", GetScreenWidth() / 2 - 188, 125, 21, BLACK);
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
@@ -206,6 +264,10 @@ void marketTabPopUp(short int* status)
 			if (checkIfClose(GetMouseX(), GetMouseY(), xButton, tabBackground.width + 266, xButton.height + 45))
 			{
 				break;
+			}
+			else
+			{
+				checkIfDonate(GetMouseX(), GetMouseY(), textures, imageX2, imageY2);
 			}
 		}
 
@@ -228,9 +290,14 @@ void marketTabPopUp(short int* status)
 	UnloadTexture(bottomBarR);
 	UnloadTexture(tabBackground);
 	UnloadTexture(xButton);
+	UnloadTexture(donateButton);
 	UnloadTexture(marketTab);
 	UnloadTexture(questionsTab);
 	UnloadTexture(miniGamesTab);
+	UnloadTexture(forestFireFund);
+	UnloadTexture(forestFund);
+	UnloadTexture(waterFund);
+	UnloadTexture(cleaningFund);
 
 	*status = 0;
 }
@@ -253,6 +320,7 @@ void questionsPopUp(short int* status)
 	Texture2D bottomBarR = LoadTexture("../../sprites/borders/bottomBarR.png");	// x <= 45%
 	Texture2D tabBackground = LoadTexture("../../sprites/background/popUpWindow.png");
 	Texture2D xButton = LoadTexture("../../sprites/buttons/xButton.png");
+	Texture2D buyButton = LoadTexture("../../sprites/buttons/buyButton.png");
 	Texture2D marketTab = LoadTexture("../../sprites/tabIcons/ecoMarketTab.png");
 	Texture2D questionsTab = LoadTexture("../../sprites/tabIcons/questionsTab.png");
 	Texture2D miniGamesTab = LoadTexture("../../sprites/tabIcons/ecoGamesTab.png");
@@ -376,6 +444,9 @@ void questionsPopUp(short int* status)
 
 		DrawTexture(tabBackground, 312, marketTab.height + 60, WHITE);
 		DrawTexture(xButton, tabBackground.width + 266, xButton.height + 45, WHITE);
+
+		DrawText(money[countMoney], 145, 40, 30, WHITE);
+		DrawText("Money: ", 35, 40, 30, WHITE);
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
@@ -430,9 +501,12 @@ void miniGamesPopUp(short int* status)
 	Texture2D bottomBarR = LoadTexture("../../sprites/borders/bottomBarR.png");	// x <= 45%
 	Texture2D tabBackground = LoadTexture("../../sprites/background/popUpWindow.png");
 	Texture2D xButton = LoadTexture("../../sprites/buttons/xButton.png");
+	Texture2D playButton = LoadTexture("../../sprites/buttons/playGamesButton.png");
 	Texture2D marketTab = LoadTexture("../../sprites/tabIcons/ecoMarketTab.png");
 	Texture2D questionsTab = LoadTexture("../../sprites/tabIcons/questionsTab.png");
 	Texture2D miniGamesTab = LoadTexture("../../sprites/tabIcons/ecoGamesTab.png");
+	Texture2D beachCleaner = LoadTexture("../../sprites/miniGames/coverImages/beachCleanerCI.png");
+	Texture2D chanceTaker = LoadTexture("../../sprites/miniGames/coverImages/chanceTakerCI.png");
 
 	// Set timers
 	float wordlFrameWidth = (float)(earth.width / 23);
@@ -553,6 +627,14 @@ void miniGamesPopUp(short int* status)
 
 		DrawTexture(tabBackground, 312, marketTab.height + 60, WHITE);
 		DrawTexture(xButton, tabBackground.width + 266, xButton.height + 45, WHITE);
+		DrawTexture(playButton, (GetScreenWidth() / 2) - 250, 380, WHITE);
+		DrawTexture(playButton, (GetScreenWidth() / 2) + 60, 380, WHITE);
+
+		DrawTexture(beachCleaner, (GetScreenWidth() / 2) - 250, 220, WHITE);
+		DrawTexture(chanceTaker, (GetScreenWidth() / 2) + 70, 220, WHITE);
+
+		DrawText(money[countMoney], 145, 40, 30, WHITE);
+		DrawText("Money: ", 35, 40, 30, WHITE);
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
@@ -560,6 +642,10 @@ void miniGamesPopUp(short int* status)
 			if (checkIfClose(GetMouseX(), GetMouseY(), xButton, tabBackground.width + 266, xButton.height + 45))
 			{
 				break;
+			}
+			else
+			{
+				checkGamePick(GetMouseX(), GetMouseY(), playButton);
 			}
 		}
 
@@ -582,6 +668,7 @@ void miniGamesPopUp(short int* status)
 	UnloadTexture(bottomBarR);
 	UnloadTexture(tabBackground);
 	UnloadTexture(xButton);
+	UnloadTexture(playButton);
 	UnloadTexture(marketTab);
 	UnloadTexture(questionsTab);
 	UnloadTexture(miniGamesTab);
@@ -939,6 +1026,9 @@ void gameRes1280x720()
 		DrawTexture(marketTab, imageX[0], imageY[0], WHITE);
 		DrawTexture(questionsTab, imageX[1], imageY[1], WHITE);
 		DrawTexture(miniGamesTab, imageX[2], imageY[2], WHITE);
+
+		DrawText(money[countMoney], 145, 40, 30, WHITE);
+		DrawText("Money: ", 35, 40, 30, WHITE);
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
