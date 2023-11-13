@@ -41,6 +41,6 @@
 - [Михаил Авагян](https://github.com/meavagyan21) - Back-End Developer
 
 ## :clipboard: Presentation and Documentation <a name="documentation"></a>
-+ [Presentation](https://github.com/SPGeorgieva21/Green-Paradise/blob/main/Documents/Presentation.pptx)
++ [Presentation](https://github.com/SPGeorgieva21/Green-Paradise/blob/main/Documents/Presentation.ods)
 + [Documentation](https://github.com/SPGeorgieva21/Green-Paradise/blob/main/Documents/Documentation.docx)
 + [QA Documentation](https://github.com/SPGeorgieva21/Green-Paradise/blob/main/Documents/QA%20Documentation.xlsx)
